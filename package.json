@@ -1,17 +1,20 @@
 {
   "name": "init-ts-module",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Init TypeScript npm module",
   "main": "./lib/index.js",
   "types": "./types/index.d.ts",
   "scripts": {
-    "pretest": "npm run tsc",
-    "test": "mocha",
+    "pretest": "npm run clean && npm run tsc",
+    "test": "ava --no-cache --verbose lib/**/*.test.js",
+    "posttest": "npm run clean-test-code",
     "tsc": "tsc",
     "tscw": "tsc -w",
     "preversion": "npm run tsc",
     "postversion": "git push --follow-tags",
-    "prepublish": "npm run tsc"
+    "prepublishOnly": "npm run tsc && npm run clean-test-code",
+    "clean": "rm -fr ./lib && rm -fr ./types",
+    "clean-test-code": "rm -fr ./lib/**/*.test.js && rm -fr ./types/**/*.test.d.ts"
   },
   "engines": {
     "node": ">=4.0.0"
@@ -31,8 +34,8 @@
   },
   "homepage": "https://github.com/Mitica/init-ts-module#readme",
   "devDependencies": {
-    "@types/node": "^7.0.5",
-    "mocha": "^3.2.0",
-    "typescript": "^2.1.5"
+    "@types/node": "latest",
+    "ava": "^0.23.0",
+    "typescript": "latest"
   }
 }
