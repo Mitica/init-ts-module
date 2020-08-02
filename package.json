@@ -34,7 +34,7 @@
   "homepage": "https://github.com/Mitica/init-ts-module#readme",
   "devDependencies": {
     "@types/node": "latest",
-    "rimraf": "^2.6.2",
+    "rimraf": "3.0.2",
     "typescript": "latest"
   }
 }
